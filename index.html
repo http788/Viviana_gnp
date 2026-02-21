@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia Patrimonial VIP | Viviana Mondragón</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           ESTILO LOVABLE (DARK PREMIUM + GOLD) CON PAS
+           ========================================= */
+        :root {
+            --background: #0B1120;       
+            --foreground: #FFFFFF;
+            --card: rgba(30, 41, 59, 0.4); 
+            --card-foreground: #FFFFFF;
+            --muted: #1E293B;
+            --muted-foreground: #94A3B8;
+            --accent: #D4AF37;           
+            --accent-foreground: #000000;
+            --border: rgba(212, 175, 55, 0.15); 
+            
+            --gradient-gold: linear-gradient(135deg, #FDE047 0%, #D4AF37 50%, #A16207 100%);
+            --text-gradient: linear-gradient(to right, #FDE047, #D4AF37);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .text-gradient-gold {
+            background: var(--text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* TOP NAV */
+        nav {
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            padding: 24px 0;
+            z-index: 50;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 120px;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px 0;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(11, 17, 32, 0.95) 0%, rgba(11, 17, 32, 0.8) 50%, transparent 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            color: var(--accent);
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.85); 
+            max-width: 520px;
+            margin-bottom: 40px;
+        }
+
+        /* FORMULARIO INTERACTIVO */
+        .form-wrapper {
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 480px;
+            margin-left: auto;
+        }
+
+        .form-header {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            font-size: 1.5rem;
+            color: var(--foreground);
+            margin-bottom: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 50%;
+            background: var(--gradient-gold);
+            transition: width 0.4s ease;
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .form-step.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.875rem;
+            color: #E2E8F0;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .form-control option {
+            background-color: var(--background);
+            color: white;
+        }
+
+        .btn-gold {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-gold);
+            color: var(--accent-foreground);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
+            margin-top: 10px;
+        }
+
+        .btn-gold:hover { opacity: 0.9; }
+        .btn-gold:active { transform: scale(0.98); }
+
+        .btn-back {
+            background: transparent;
+            color: var(--muted-foreground);
+            border: none;
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .btn-back:hover { color: white; }
+
+        /* SECCIONES GLOBALES */
+        .section-padding { padding: 100px 0; }
+        
+        .section-header {
+            text-align: center;
+            max-width: 768px;
+            margin: 0 auto 64px auto;
+        }
+
+        .section-tag {
+            color: var(--accent);
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        /* 1. AGITACIÓN DEL DOLOR */
+        .problema {
+            background-color: var(--background);
+        }
+
+        .pain-card {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 40px 32px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pain-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--gradient-gold);
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .pain-card:hover::before { opacity: 1; }
+        .pain-card:hover { transform: translateY(-5px); background: rgba(30, 41, 59, 0.6); }
+
+        .pain-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .pain-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--foreground);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+        }
+
+        .pain-card p {
+            color: var(--muted-foreground);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 2. SOLUCIONES (PRODUCTOS) */
+        .productos {
+            background-color: rgba(15, 23, 42, 0.4); 
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .prod-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+        }
+
+        .prod-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .prod-card.featured {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            transform: scale(1.05);
+            position: relative;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-gold);
+            color: var(--accent-foreground);
+            padding: 6px 20px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .prod-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .prod-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .prod-tag {
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .prod-desc {
+            color: var(--muted-foreground);
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .feature-list svg {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* 3. CASOS DE ÉXITO (TESTIMONIOS) */
+        .testimonios {
+            background-color: var(--background);
+        }
+
+        .testimonio-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            opacity: 0.1;
+            color: var(--accent);
+        }
+
+        .testimonio-card p.cita {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.85);
+            font-style: italic;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cliente-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        .cliente-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-foreground);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .cliente-detalles h4 {
+            color: var(--foreground);
+            font-size: 1rem;
+            margin-bottom: 2px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .cliente-detalles span {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* ASESORA */
+        .sobre-mi {
+            background-color: rgba(15, 23, 42, 0.3);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .sobre-mi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .sobre-mi-img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+        }
+
+        .asesora-texto p {
+            color: var(--muted-foreground);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px 0 40px 0;
+            background: var(--background);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            color: var(--muted-foreground);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-gold);
+            color: var(--accent-foreground);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 992px) {
+            .hero-content, .sobre-mi-grid { grid-template-columns: 1fr; }
+            .hero { padding-top: 120px; text-align: center; }
+            .hero h1 { font-size: 2.8rem; margin-left: auto; margin-right: auto; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .badge { justify-content: center; width: 100%; }
+            .form-wrapper { margin: 40px auto 0 auto; }
+            .prod-card.featured { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <img src="LogoFinal_2.png" alt="Logo GNP" class="logo">
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="container hero-content">
+            <div>
+                <div class="badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                    Estrategia Financiera VIP
+                </div>
+                
+                <h1 class="font-display">Tu patrimonio tardó años en construirse. <br><span class="text-gradient-gold">No dejes que un imprevisto lo destruya.</span></h1>
+                <p>Las familias financieramente más sólidas de México no improvisan. Garantiza el nivel de vida de los que amas, blinda tu retiro y multiplica tu legado con el respaldo absoluto de GNP.</p>
+            </div>
+
+            <div class="form-wrapper" id="formulario">
+                <div class="form-header">
+                    <h2 id="form-title">Auditoría Patrimonial</h2>
+                    <p id="form-subtitle">Paso 1: Ayúdanos a perfilar tu estrategia.</p>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+
+                <form id="qualifier-form" action="https://formspree.io/f/TU_ID_AQUI" method="POST">
+                    <input type="hidden" name="_next" value="https://calendly.com/vivianamondragonn/asesoria-gnp">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div id="paso-1" class="form-step active">
+                        <div class="form-group">
+                            <label>Rango de Edad</label>
+                            <select id="edad" name="edad" class="form-control" required>
+                                <option value="" disabled selected>Selecciona tu edad...</option>
+                                <option value="30 a 40 años">30 a 40 años</option>
+                                <option value="40 a 50 años">40 a 50 años</option>
+                                <option value="Más de 50 años">Más de 50 años</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ingreso Anual Estimado</label>
+                            <select id="ingreso" name="ingreso" class="form-control" required>
+                                <option value="" disabled selected>Selecciona un rango...</option>
+                                <option value="40k a 60k">$40,000 a $60,000</option>
+                                <option value="60k a 100k">$60,000 a $100,000</option>
+                                <option value="Más de 100k">Más de $100,000</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Capacidad de Ahorro Anual</label>
+                            <select id="ahorro" name="ahorro" class="form-control" required>
+                                <option value="" disabled selected>Selecciona una meta...</option>
+                                <option value="30k a 50k">$30,000 a $50,000</option>
+                                <option value="50k a 100k">$50,000 a $100,000</option>
+                                <option value="Más de 100k">Más de $100,000</option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="btn-gold" onclick="validarPaso1()">Descubrir mi plan ideal →</button>
+                    </div>
+
+                    <div id="paso-2" class="form-step">
+                        <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Roberto Sánchez">
+                        </div>
+
+                        <div class="form-group">
+                            <label>WhatsApp Personal</label>
+                            <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="A 10 dígitos">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Correo Electrónico</label>
+                            <input type="email" id="correo" name="correo" class="form-control" required placeholder="tu@correo.com">
+                        </div>
+
+                        <button type="submit" class="btn-gold">Ver Agenda y Confirmar Sesión</button>
+                        <button type="button" class="btn-back" onclick="regresarPaso1()">← Modificar datos de perfil</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding problema">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Análisis de Riesgo</span>
+                <h2 class="font-display">La realidad que nadie te cuenta sobre tu <span class="text-gradient-gold">futuro financiero</span></h2>
+                <p>El 80% de las familias de altos ingresos pierden su nivel de vida tras una eventualidad mayor. Estos son los errores fatales que debes evitar hoy.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="pain-card">
+                    <div class="pain-icon">📉</div>
+                    <h3>Liquidez sin rendimiento</h3>
+                    <p>Tener tu dinero "seguro" en el banco es una ilusión. La inflación silenciosa devora tu poder adquisitivo cada año. Si tu capital no crece, te estás empobreciendo.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">⚠️</div>
+                    <h3>Falsa sensación de seguridad</h3>
+                    <p>Creer que "nunca te pasará nada". Una enfermedad grave o una ausencia prematura no solo es un golpe emocional, sino que puede liquidar los ahorros de toda tu vida en meses.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">⏳</div>
+                    <h3>Depender de sistemas caducos</h3>
+                    <p>Esperar que tu Afore o el sistema tradicional mantenga tu estilo de vida en la jubilación es matemáticamente imposible. Tu retiro digno depende única y exclusivamente de lo que estructures hoy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding productos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portafolio GNP</span>
+                <h2 class="font-display">El antídoto: Planes diseñados para <span class="text-gradient-gold">garantizar tu tranquilidad</span></h2>
+            </div>
+
+            <div class="grid-3">
+                <div class="prod-card">
+                    <div class="prod-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                    </div>
+                    <h3 class="font-display">Proyecta</h3>
+                    <div class="prod-tag">Materializa tus metas</div>
+                    <p class="prod-desc">El vehículo perfecto para fondear proyectos a mediano plazo (como la universidad en el extranjero de tus hijos), garantizando que el dinero estará ahí aunque tú llegues a faltar.</p>
+                    <ul class="feature-list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Ahorro inteligente protegido</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Flexibilidad en aportaciones</li>
+                    </ul>
+                </div>
+
+                <div class="prod-card featured">
+                    <div class="featured-badge">Más Elegido</div>
+                    <div class="prod-icon" style="background: rgba(212, 175, 55, 0.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"></line><line x1="6" x2="6" y1="18" y2="11"></line><line x1="10" x2="10" y1="18" y2="11"></line><line x1="14" x2="14" y1="18" y2="11"></line><line x1="18" x2="18" y1="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon></svg>
+                    </div>
+                    <h3 class="font-display">Consolida</h3>
+                    <div class="prod-tag">Asegura tu capital y tu retiro</div>
+                    <p class="prod-desc">Ingeniería financiera pura. Oblígate a capitalizar tu esfuerzo mediante un instrumento de ahorro con rendimientos certeros, manteniendo tu protección desde el primer segundo.</p>
+                    <ul class="feature-list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Rendimientos garantizados</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Suma asegurada personalizable</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Excelente instrumento de jubilación</li>
+                    </ul>
+                </div>
+
+                <div class="prod-card">
+                    <div class="prod-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                    </div>
+                    <h3 class="font-display">Trasciende</h3>
+                    <div class="prod-tag">Tu legado intacto</div>
+                    <p class="prod-desc">La herramienta definitiva para la transferencia de riqueza. Garantiza la estabilidad económica de tus seres queridos de forma vitalicia sin comprometer tu liquidez actual.</p>
+                    <ul class="feature-list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Protección de por vida</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Herencia garantizada (libre de impuestos)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding testimonios">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Casos de Éxito</span>
+                <h2 class="font-display">Historias de familias que ya <span class="text-gradient-gold">tomaron acción</span></h2>
+            </div>
+
+            <div class="grid-3">
+                <div class="testimonio-card">
+                    <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3z"></path></svg>
+                    <p class="cita">"Mi mayor miedo era no estar aquí para pagar la carrera de medicina de mi hija. Con el plan Proyecta, no solo me obligué a invertir inteligentemente, sino que tengo la paz mental de que su educación ya está 100% blindada."</p>
+                    <div class="cliente-info">
+                        <div class="cliente-avatar">R</div>
+                        <div class="cliente-detalles">
+                            <h4>Roberto M. (42 años)</h4>
+                            <span>Empresario · Plan Proyecta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonio-card">
+                    <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3z"></path></svg>
+                    <p class="cita">"Como proveedores de la casa, mi esposo y yo no podíamos dormir pensando qué pasaría con nuestros hijos pequeños si uno faltaba. Vida Trasciende nos quitó un peso enorme de encima protegiendo todo nuestro patrimonio."</p>
+                    <div class="cliente-info">
+                        <div class="cliente-avatar">G</div>
+                        <div class="cliente-detalles">
+                            <h4>Familia Garza S. (38 años)</h4>
+                            <span>Profesionistas · Vida Trasciende</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonio-card">
+                    <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3z"></path></svg>
+                    <p class="cita">"Quería iniciar mi fondo de retiro, pero los bancos tradicionales me daban tasas de risa. La auditoría de Viviana me llevó al plan Consolida. Hoy mi dinero crece por encima de la inflación y tengo un seguro activo. Una maravilla."</p>
+                    <div class="cliente-info">
+                        <div class="cliente-avatar">E</div>
+                        <div class="cliente-detalles">
+                            <h4>Elena T. (35 años)</h4>
+                            <span>Socia Directora · Consolida</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding sobre-mi">
+        <div class="container">
+            <div class="sobre-mi-grid">
+                <div>
+                    <span class="section-tag">Senior Wealth Advisor</span>
+                    <h2 class="font-display" style="font-size: 3rem; margin-bottom: 24px;">Hola, soy <br><span class="text-gradient-gold">Viviana Mondragón</span></h2>
+                    
+                    <div class="asesora-texto">
+                        <p>En el nivel patrimonial en el que te encuentras, las pólizas genéricas son un riesgo inaceptable. Mi enfoque trasciende la venta tradicional; ofrezco un servicio de <strong>estructuración financiera exclusivo y confidencial.</strong></p>
+                        <p>A través de un diagnóstico minucioso, diseño instrumentos de certidumbre que garantizan que tu estilo de vida y el de tu familia permanezcan inquebrantables. Tú dedícate a disfrutar tu éxito, nosotros blindamos tu legado.</p>
+                    </div>
+                    
+                    <button class="btn-gold" style="max-width: 250px; margin-top: 30px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">INICIAR MI COTIZACIÓN</button>
+                </div>
+                
+                <div>
+                    <img src="WhatsApp Image 2026-02-17 at 9.39.04 PM.jpeg" alt="Viviana Mondragón" class="sobre-mi-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.instagram.com/vivianamondragonn?utm_source=qr&igsh=MWVuY2xjd2g2OGoxMA%3D%3D" target="_blank" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                </a>
+            </div>
+            <p style="color: rgba(255,255,255,0.4); font-size: 0.875rem;">© 2026 Viviana Mondragón · Asesoría Patrimonial GNP · Todos los derechos reservados</p>
+            <p style="color: rgba(255,255,255,0.2); font-size: 0.75rem; margin-top: 10px;">La información proporcionada es confidencial y procesada de forma segura.</p>
+        </div>
+    </footer>
+
+    <script>
+        function validarPaso1() {
+            const edad = document.getElementById('edad');
+            const ingreso = document.getElementById('ingreso');
+            const ahorro = document.getElementById('ahorro');
+            
+            if (edad.checkValidity() && ingreso.checkValidity() && ahorro.checkValidity()) {
+                document.getElementById('paso-1').classList.remove('active');
+                document.getElementById('paso-2').classList.add('active');
+                
+                document.getElementById('form-title').innerText = "Contacto Confidencial";
+                document.getElementById('form-subtitle').innerText = "Paso 2: ¿A dónde enviamos el acceso a tu agenda?";
+                document.getElementById('progress-bar').style.width = "100%";
+            } else {
+                edad.reportValidity();
+                ingreso.reportValidity();
+                ahorro.reportValidity();
+            }
+        }
+
+        function regresarPaso1() {
+            document.getElementById('paso-2').classList.remove('active');
+            document.getElementById('paso-1').classList.add('active');
+            
+            document.getElementById('form-title').innerText = "Auditoría Patrimonial";
+            document.getElementById('form-subtitle').innerText = "Paso 1: Ayúdanos a perfilar tu estrategia.";
+            document.getElementById('progress-bar').style.width = "50%";
+        }
+    </script>
+</body>
+</html>
