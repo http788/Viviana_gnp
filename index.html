@@ -62,14 +62,10 @@
             background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             width: 100%; max-width: 480px; margin-left: auto; position: relative;
-            transition: max-width 0.6s ease, padding 0.6s ease; /* Transición suave para el calendario */
+            transition: max-width 0.6s ease, padding 0.6s ease;
         }
         
-        /* Clase que se activa para darle espacio ancho al calendario */
-        .form-wrapper.calendar-mode {
-            max-width: 800px;
-            padding: 20px;
-        }
+        .form-wrapper.calendar-mode { max-width: 800px; padding: 20px; }
 
         .form-header { margin-bottom: 24px; text-align: center; }
         .form-header h2 { font-size: 1.5rem; color: var(--foreground); margin-bottom: 8px; font-weight: 700; }
@@ -96,32 +92,27 @@
         .btn-back { background: transparent; color: var(--muted-foreground); border: none; width: 100%; padding: 12px; margin-top: 8px; cursor: pointer; font-size: 0.875rem; transition: color 0.2s; }
         .btn-back:hover { color: white; }
 
-        /* CALENDARIO GHL OCULTO INICIALMENTE */
+        /* CALENDARIO GHL */
         #calendar-container { display: none; animation: fadeIn 0.8s ease; width: 100%; }
-        
         .calendario-iframe { width: 100%; min-height: 650px; border: none; overflow: hidden; }
 
-        /* MODAL POPUP DE URGENCIA CON FORMULARIO INTEGRADO */
+        /* MODAL POPUP */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(11, 17, 32, 0.85); backdrop-filter: blur(10px);
             z-index: 9999; display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-            padding: 20px;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 20px;
         }
         .modal-overlay.show { opacity: 1; pointer-events: auto; }
         .modal-content {
-            background: var(--background); border: 1px solid var(--accent);
-            padding: 40px; border-radius: 16px; width: 100%; max-width: 500px;
+            background: var(--background); border: 1px solid var(--accent); padding: 40px; border-radius: 16px; width: 100%; max-width: 500px;
             text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.8);
             transform: translateY(20px); transition: transform 0.4s ease, max-width 0.4s ease;
-            max-height: 90vh; overflow-y: auto; /* Permite scroll si la pantalla es pequeña */
+            max-height: 90vh; overflow-y: auto; 
         }
         .modal-overlay.show .modal-content { transform: translateY(0); }
         .modal-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--muted-foreground); font-size: 2rem; cursor: pointer; transition: color 0.2s; z-index: 10; }
         .modal-close:hover { color: white; }
-        
-        /* Cuando el modal muestra el calendario, se hace más ancho */
         .modal-content.calendar-mode { max-width: 800px; padding: 20px; }
 
         /* SECCIONES GLOBALES */
@@ -132,7 +123,7 @@
         .section-header p { color: var(--muted-foreground); font-size: 1.125rem; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; align-items: stretch; }
 
-        /* RESTO DE ESTILOS MANTENIDOS IGUAL PARA LA VELOCIDAD */
+        /* AGITACIÓN DEL DOLOR */
         .problema { background-color: var(--background); }
         .pain-card { background: var(--card); border: 1px solid rgba(255,255,255,0.05); padding: 40px 32px; border-radius: 16px; transition: all 0.3s ease; position: relative; overflow: hidden; }
         .pain-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #E11D48; opacity: 0.6; transition: opacity 0.3s; }
@@ -142,6 +133,7 @@
         .pain-card h3 { font-size: 1.25rem; margin-bottom: 16px; color: var(--foreground); font-weight: 700; }
         .pain-card p { color: var(--muted-foreground); font-size: 0.95rem; line-height: 1.7; }
 
+        /* PRODUCTOS */
         .productos { background-color: rgba(15, 23, 42, 0.4); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .prod-card { background: var(--card); border: 1px solid var(--border); padding: 40px 32px; border-radius: 16px; display: flex; flex-direction: column; transition: all 0.3s; }
         .prod-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
@@ -155,6 +147,7 @@
         .feature-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 0.9rem; color: rgba(255,255,255,0.9); }
         .feature-list svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
 
+        /* TESTIMONIOS */
         .testimonios { background-color: var(--background); }
         .testimonio-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 20px; position: relative; backdrop-filter: blur(10px); }
         .quote-icon { position: absolute; top: 30px; right: 30px; opacity: 0.1; color: var(--accent); }
@@ -164,11 +157,25 @@
         .cliente-detalles h4 { color: var(--foreground); font-size: 1rem; margin-bottom: 2px; font-family: 'Plus Jakarta Sans', sans-serif; }
         .cliente-detalles span { color: var(--accent); font-size: 0.8rem; font-weight: 600; }
 
+        /* ASESORA */
         .sobre-mi { background-color: rgba(15, 23, 42, 0.3); border-top: 1px solid rgba(255,255,255,0.05); }
         .sobre-mi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
         .sobre-mi-img { width: 100%; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid var(--border); }
         .asesora-texto p { color: var(--muted-foreground); margin-bottom: 20px; font-size: 1.1rem; }
 
+        /* PREGUNTAS FRECUENTES (NUEVO) */
+        .faq { background-color: var(--background); border-top: 1px solid rgba(255,255,255,0.05); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 24px 0; }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--foreground); transition: color 0.3s; }
+        .faq-question:hover { color: var(--accent); }
+        .faq-icon { font-size: 1.8rem; color: var(--accent); transition: transform 0.3s ease; font-weight: 300; line-height: 1; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin-top 0.4s ease; color: var(--muted-foreground); font-size: 1rem; line-height: 1.7; }
+        /* Clases activas para el JS */
+        .faq-item.active .faq-answer { max-height: 300px; margin-top: 16px; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        /* FOOTER */
         footer { padding: 60px 0 40px 0; background: var(--background); border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
         .social-links { display: flex; justify-content: center; margin-bottom: 30px; }
         .social-links a { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: rgba(255,255,255,0.05); border-radius: 50%; color: var(--muted-foreground); transition: all 0.3s; }
@@ -182,7 +189,7 @@
             .badge { justify-content: center; width: 100%; }
             .form-wrapper { margin: 40px auto 0 auto; }
             .prod-card.featured { transform: scale(1); }
-            .calendario-iframe { min-height: 800px; } /* Más altura en móviles para el calendario GHL */
+            .calendario-iframe { min-height: 800px; } 
         }
     </style>
 </head>
@@ -345,7 +352,6 @@
                 <div id="calendar-container">
                     <h2 class="font-display" style="text-align: center; font-size: 1.6rem; color: var(--accent); margin-bottom: 20px;">¡Excelente! Último Paso.</h2>
                     <p style="text-align: center; color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 20px;">Selecciona el día y la hora para tu Auditoría Privada por Zoom.</p>
-                    
                     <iframe src="https://api.leadconnectorhq.com/widget/booking/usc3LKEVKKwoIEsbwfYe" class="calendario-iframe" scrolling="yes" id="usc3LKEVKKwoIEsbwfYe_1"></iframe>
                 </div>
             </div>
@@ -359,7 +365,6 @@
                 <h2 class="font-display">Los 3 errores que están <span class="text-gradient-gold">destruyendo tu riqueza hoy</span></h2>
                 <p>Las finanzas tradicionales están diseñadas para que el banco gane, no tú. Estos son los riesgos invisibles que amenazan a tu familia en este mismo momento.</p>
             </div>
-
             <div class="grid-3">
                 <div class="pain-card">
                     <div class="pain-icon">📉</div>
@@ -369,12 +374,12 @@
                 <div class="pain-card">
                     <div class="pain-icon">🏥</div>
                     <h3>La ruina por enfermedad</h3>
-                    <p>Una emergencia médica seria puede costar millones de pesos de la noche a la mañana. Sin el blindaje correcto, terminarás rematando tus propiedades y destruyendo la herencia de tus hijos para pagar facturas del hospital.</p>
+                    <p>Una emergencia médica seria puede costar millones de pesos de la noche a la mañana. Sin el blindaje correcto, terminarás rematando tus propiedades y destruyendo la herencia de tus hijos.</p>
                 </div>
                 <div class="pain-card">
                     <div class="pain-icon">👴</div>
                     <h3>Ser una carga para tus hijos</h3>
-                    <p>Creer que tu negocio o la Afore te mantendrán en la vejez es el error número uno. Si no estructuras un retiro con rendimientos garantizados hoy, el precio financiero lo pagarán tus hijos el día de mañana.</p>
+                    <p>Creer que tu negocio o la Afore te mantendrán en la vejez es el error número uno. Si no estructuras un retiro con rendimientos garantizados hoy, el precio financiero lo pagarán tus hijos.</p>
                 </div>
             </div>
         </div>
@@ -386,7 +391,6 @@
                 <span class="section-tag">El Antídoto</span>
                 <h2 class="font-display">La arquitectura financiera que te <span class="text-gradient-gold">devuelve el control</span></h2>
             </div>
-
             <div class="grid-3">
                 <div class="prod-card">
                     <div class="prod-icon">
@@ -394,38 +398,36 @@
                     </div>
                     <h3 class="font-display">Vida Proyecta</h3>
                     <div class="prod-tag">Fondea tus sueños sin endeudarte</div>
-                    <p class="prod-desc">Diseñado para proyectos innegociables. Garantiza que el dinero para la universidad de tus hijos o el enganche de tu próxima propiedad estará ahí, incluso si tú llegas a faltar antes de tiempo.</p>
+                    <p class="prod-desc">Diseñado para proyectos innegociables. Garantiza que el dinero para la universidad de tus hijos o tu próxima propiedad estará ahí, incluso si tú llegas a faltar.</p>
                     <ul class="feature-list">
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Oblígate a ahorrar con propósito</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Crecimiento de capital asegurado</li>
                     </ul>
                 </div>
-
                 <div class="prod-card featured">
                     <div class="featured-badge">El Más Completo</div>
                     <div class="prod-icon" style="background: rgba(212, 175, 55, 0.2);">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"></line><line x1="6" x2="6" y1="18" y2="11"></line><line x1="10" x2="10" y1="18" y2="11"></line><line x1="14" x2="14" y1="18" y2="11"></line><line x1="18" x2="18" y1="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon></svg>
                     </div>
                     <h3 class="font-display">Consolida</h3>
-                    <div class="prod-tag">Retiro digno, donde tú pones las reglas</div>
-                    <p class="prod-desc">Crea un fondo intocable con rendimientos superiores. Oblígate a capitalizar tu esfuerzo en una edad productiva, para que en tu retiro no dependas de nada ni de nadie.</p>
+                    <div class="prod-tag">Retiro digno bajo tus reglas</div>
+                    <p class="prod-desc">Crea un fondo intocable con rendimientos superiores. Oblígate a capitalizar tu esfuerzo hoy, para que en tu retiro no dependas de nada ni de nadie.</p>
                     <ul class="feature-list">
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Rendimientos garantizados por contrato</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Rendimientos por contrato</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Protección por invalidez total</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Opciones de deducibilidad fiscal</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Deducibilidad fiscal</li>
                     </ul>
                 </div>
-
                 <div class="prod-card">
                     <div class="prod-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
                     </div>
                     <h3 class="font-display">Vida Trasciende</h3>
-                    <div class="prod-tag">Tu familia es primero. Y para siempre.</div>
-                    <p class="prod-desc">Asegura hoy que tu familia no pierda su casa, su estilo de vida ni su estatus si tú llegas a faltar. Una inyección de capital vitalicia, libre de impuestos y de embargos.</p>
+                    <div class="prod-tag">Tu familia es primero. Siempre.</div>
+                    <p class="prod-desc">Asegura hoy que tu familia no pierda su casa ni su estatus si tú llegas a faltar. Una inyección de capital vitalicia, libre de impuestos y de embargos.</p>
                     <ul class="feature-list">
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Blindaje patrimonial de por vida</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Transmisión de herencia impecable</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Herencia libre de impuestos</li>
                     </ul>
                 </div>
             </div>
@@ -471,16 +473,67 @@
         <div class="container">
             <div class="sobre-mi-grid">
                 <div>
-                    <span class="section-tag">Senior Wealth Advisor</span>
+                    <span class="section-tag">Senior Wealth Advisor GNP</span>
                     <h2 class="font-display" style="font-size: 3rem; margin-bottom: 24px;">Hola, soy <br><span class="text-gradient-gold">Viviana Mondragón</span></h2>
                     <div class="asesora-texto">
                         <p>En el nivel patrimonial en el que te encuentras, las pólizas genéricas son un riesgo inaceptable. Mi enfoque trasciende la venta tradicional; ofrezco un servicio de <strong>estructuración financiera exclusivo y confidencial.</strong></p>
-                        <p>Diseño instrumentos de certidumbre que garantizan que el estilo de vida de tu familia permanezca inquebrantable. Tú dedícate a disfrutar tu éxito, nosotros blindamos tu legado.</p>
+                        <p>Diseño instrumentos de certidumbre que garantizan que el estilo de vida de tu familia permanezca inquebrantables. Tú dedícate a disfrutar tu éxito, nosotros blindamos tu legado.</p>
                     </div>
                     <button class="btn-gold" style="max-width: 300px; margin-top: 30px;" onclick="document.getElementById('formulario-contenedor').scrollIntoView({behavior: 'smooth'})">INICIAR MI COTIZACIÓN</button>
                 </div>
                 <div>
                     <img src="WhatsApp Image 2026-02-17 at 9.39.04 PM.jpeg" alt="Viviana Mondragón" class="sobre-mi-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Aclara tus dudas</span>
+                <h2 class="font-display">Preguntas Frecuentes</h2>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        ¿Por qué necesito una asesoría si ya tengo Seguro de Gastos Médicos?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        El seguro de gastos médicos cubre las facturas del hospital, pero no cubre las colegiaturas de tus hijos, la hipoteca ni la despensa si tú llegas a faltar o sufres una invalidez total. La estrategia patrimonial que diseñamos blinda el nivel de vida de tu familia y garantiza tu propio retiro de forma integral.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        ¿Los rendimientos de los planes de ahorro están garantizados?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutamente. A diferencia de las inversiones de riesgo en la bolsa de valores o en los bancos, instrumentos como Consolida de GNP te garantizan por contrato y por escrito un capital final. Tu dinero crece protegido contra la inflación, dándote certeza matemática de cuánto recibirás en el futuro.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        ¿Qué pasa si en el futuro tengo una emergencia y no puedo pagar mi plan?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Entendemos que los negocios y la vida tienen altibajos. Los planes de GNP son altamente flexibles. Cuentan con opciones de rescate como periodos de gracia, préstamos sobre tu misma póliza o la opción de "seguro saldado" para que nunca pierdas el dinero que ya construiste si atraviesas un bache financiero.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        ¿Esta primera auditoría financiera tiene algún costo?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        No. La sesión inicial de diagnóstico es 100% confidencial y sin costo. Mi objetivo en esta primera llamada es analizar tu situación actual, detectar vulnerabilidades en tus finanzas y mostrarte de forma transparente qué opciones tienes para resolverlas. Tú decides si avanzamos o no.
+                    </div>
                 </div>
             </div>
         </div>
@@ -538,7 +591,7 @@
             document.getElementById('m-paso-1').classList.add('active');
         }
 
-        // FUNCIÓN AJAX PARA FORMULARIO PRINCIPAL
+        // AJAX FORMULARIO PRINCIPAL
         document.getElementById('qualifier-form').addEventListener('submit', function(e) {
             e.preventDefault(); 
             const btn = document.getElementById('submit-btn');
@@ -551,7 +604,6 @@
                     document.getElementById('form-header-content').style.display = 'none';
                     document.getElementById('qualifier-form').style.display = 'none';
                     
-                    // Mostramos el calendario y expandimos el contenedor para que no se vea "largo"
                     const container = document.getElementById('formulario-contenedor');
                     container.classList.add('calendar-mode');
                     document.getElementById('calendar-container').style.display = 'block';
@@ -559,7 +611,7 @@
             }).catch(error => { alert("Problema de conexión."); btn.innerText = "Generar Diagnóstico"; btn.disabled = false; });
         });
 
-        // FUNCIÓN AJAX PARA FORMULARIO DEL MODAL
+        // AJAX FORMULARIO DEL MODAL
         document.getElementById('modal-form').addEventListener('submit', function(e) {
             e.preventDefault(); 
             const btn = document.getElementById('modal-submit-btn');
@@ -571,7 +623,6 @@
                     formCompletado = true; 
                     document.getElementById('modal-form-content').style.display = 'none';
                     
-                    // Mostramos el calendario en el modal y lo ensanchamos
                     const modalBox = document.getElementById('modal-box');
                     modalBox.classList.add('calendar-mode');
                     document.getElementById('modal-calendar-container').style.display = 'block';
@@ -579,12 +630,32 @@
             }).catch(error => { alert("Problema de conexión."); btn.innerText = "Generar Diagnóstico"; btn.disabled = false; });
         });
 
-        // POPUP AL MINUTO (Solo si no han llenado el form)
+        // POPUP AL MINUTO
         setTimeout(function() {
             if(!formCompletado) { document.getElementById('urgency-modal').classList.add('show'); }
         }, 60000); 
 
         function cerrarModal() { document.getElementById('urgency-modal').classList.remove('show'); }
+
+        // LÓGICA DEL ACORDEÓN DE PREGUNTAS FRECUENTES
+        function toggleFaq(element) {
+            // Si hacemos clic en uno que ya está abierto, lo cerramos
+            if (element.classList.contains('active')) {
+                element.classList.remove('active');
+                element.querySelector('.faq-icon').innerText = '+';
+            } else {
+                // Cerramos todos los demás primero (Opcional, para mantener limpio el diseño)
+                const allFaqs = document.querySelectorAll('.faq-item');
+                allFaqs.forEach(faq => {
+                    faq.classList.remove('active');
+                    faq.querySelector('.faq-icon').innerText = '+';
+                });
+                
+                // Abrimos el que clickeamos
+                element.classList.add('active');
+                element.querySelector('.faq-icon').innerText = '×';
+            }
+        }
     </script>
 </body>
 </html>
