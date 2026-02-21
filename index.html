@@ -26,548 +26,153 @@
             --text-gradient: linear-gradient(to right, #FDE047, #D4AF37);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
         body {
-            background-color: var(--background);
-            color: var(--foreground);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: var(--background); color: var(--foreground);
+            font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; overflow-x: hidden;
         }
 
-        h1, h2, h3, .font-display {
-            font-family: 'Playfair Display', serif;
-        }
+        h1, h2, h3, .font-display { font-family: 'Playfair Display', serif; }
 
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 
         .text-gradient-gold {
-            background: var(--text-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            background: var(--text-gradient); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
         }
 
         /* TOP NAV */
-        nav {
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            padding: 24px 0;
-            z-index: 50;
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* TAMAÑO DEL LOGO AJUSTADO */
-        .logo {
-            height: 100px; 
-            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
-        }
+        nav { position: absolute; top: 0; left: 0; width: 100%; padding: 24px 0; z-index: 50; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { height: 65px; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5)); }
 
         /* HERO SECTION */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 0 80px 0;
-            overflow: hidden;
-        }
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px 0; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; z-index: -2; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(11, 17, 32, 0.95) 0%, rgba(11, 17, 32, 0.8) 50%, transparent 100%); z-index: -1; }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 10; }
 
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
+        .badge { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px; color: var(--accent); font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+        .hero h1 { font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+        .hero p { font-size: 1.125rem; color: rgba(255, 255, 255, 0.85); max-width: 520px; margin-bottom: 40px; }
+
+        /* FORMULARIO INTERACTIVO & CALENDARIO (DINÁMICO) */
+        .form-wrapper {
+            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%; max-width: 480px; margin-left: auto; position: relative;
+            transition: max-width 0.6s ease, padding 0.6s ease; /* Transición suave para el calendario */
         }
         
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, rgba(11, 17, 32, 0.95) 0%, rgba(11, 17, 32, 0.8) 50%, transparent 100%);
-            z-index: -1;
+        /* Clase que se activa para darle espacio ancho al calendario */
+        .form-wrapper.calendar-mode {
+            max-width: 800px;
+            padding: 20px;
         }
 
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-        }
+        .form-header { margin-bottom: 24px; text-align: center; }
+        .form-header h2 { font-size: 1.5rem; color: var(--foreground); margin-bottom: 8px; font-weight: 700; }
+        .form-header p { font-size: 0.875rem; color: var(--accent); font-weight: 600; }
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-            color: var(--accent);
-            font-size: 0.875rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
+        .progress-container { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-bottom: 24px; overflow: hidden; }
+        .progress-bar { height: 100%; width: 50%; background: var(--gradient-gold); transition: width 0.4s ease; }
 
-        .hero h1 {
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .hero p {
-            font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.85); 
-            max-width: 520px;
-            margin-bottom: 40px;
-        }
-
-        /* FORMULARIO INTERACTIVO */
-        .form-wrapper {
-            background: rgba(15, 23, 42, 0.6); 
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 480px;
-            margin-left: auto;
-        }
-
-        .form-header {
-            margin-bottom: 24px;
-            text-align: center;
-        }
-
-        .form-header h2 {
-            font-size: 1.5rem;
-            color: var(--foreground);
-            margin-bottom: 8px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-        }
-
-        .form-header p {
-            font-size: 0.875rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            margin-bottom: 24px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 50%;
-            background: var(--gradient-gold);
-            transition: width 0.4s ease;
-        }
-
-        .form-step {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
+        .form-step { display: none; animation: fadeIn 0.4s ease; }
         .form-step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.875rem; color: #E2E8F0; font-weight: 500; }
+        .form-control { width: 100%; padding: 14px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-size: 0.95rem; transition: all 0.2s; font-family: inherit; }
+        .form-control:focus { outline: none; border-color: var(--accent); background: rgba(0, 0, 0, 0.6); }
+        .form-control option { background-color: var(--background); color: white; }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.875rem;
-            color: #E2E8F0;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 14px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            color: white;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        .form-control option {
-            background-color: var(--background);
-            color: white;
-        }
-
-        .btn-gold {
-            width: 100%;
-            padding: 16px;
-            background: var(--gradient-gold);
-            color: var(--accent-foreground);
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: opacity 0.2s, transform 0.1s;
-            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
-            margin-top: 10px;
-        }
-
+        .btn-gold { width: 100%; padding: 16px; background: var(--gradient-gold); color: var(--accent-foreground); border: none; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s, transform 0.1s; box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25); margin-top: 10px; }
         .btn-gold:hover { opacity: 0.9; }
         .btn-gold:active { transform: scale(0.98); }
+        .btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        .btn-back {
-            background: transparent;
-            color: var(--muted-foreground);
-            border: none;
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: color 0.2s;
-        }
-
+        .btn-back { background: transparent; color: var(--muted-foreground); border: none; width: 100%; padding: 12px; margin-top: 8px; cursor: pointer; font-size: 0.875rem; transition: color 0.2s; }
         .btn-back:hover { color: white; }
+
+        /* CALENDARIO GHL OCULTO INICIALMENTE */
+        #calendar-container { display: none; animation: fadeIn 0.8s ease; width: 100%; }
+        
+        .calendario-iframe { width: 100%; min-height: 650px; border: none; overflow: hidden; }
+
+        /* MODAL POPUP DE URGENCIA CON FORMULARIO INTEGRADO */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 17, 32, 0.85); backdrop-filter: blur(10px);
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+        .modal-overlay.show { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            background: var(--background); border: 1px solid var(--accent);
+            padding: 40px; border-radius: 16px; width: 100%; max-width: 500px;
+            text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            transform: translateY(20px); transition: transform 0.4s ease, max-width 0.4s ease;
+            max-height: 90vh; overflow-y: auto; /* Permite scroll si la pantalla es pequeña */
+        }
+        .modal-overlay.show .modal-content { transform: translateY(0); }
+        .modal-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--muted-foreground); font-size: 2rem; cursor: pointer; transition: color 0.2s; z-index: 10; }
+        .modal-close:hover { color: white; }
+        
+        /* Cuando el modal muestra el calendario, se hace más ancho */
+        .modal-content.calendar-mode { max-width: 800px; padding: 20px; }
 
         /* SECCIONES GLOBALES */
         .section-padding { padding: 100px 0; }
-        
-        .section-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 64px auto;
-        }
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 64px auto; }
+        .section-tag { color: var(--accent); font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 16px; }
+        .section-header h2 { font-size: clamp(2.2rem, 4vw, 3rem); margin-bottom: 24px; line-height: 1.2; }
+        .section-header p { color: var(--muted-foreground); font-size: 1.125rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; align-items: stretch; }
 
-        .section-tag {
-            color: var(--accent);
-            font-size: 0.875rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 16px;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2.2rem, 4vw, 3rem);
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .section-header p {
-            color: var(--muted-foreground);
-            font-size: 1.125rem;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            align-items: stretch;
-        }
-
-        /* 1. AGITACIÓN DEL DOLOR (PSICOLOGÍA) */
-        .problema {
-            background-color: var(--background);
-        }
-
-        .pain-card {
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 40px 32px;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pain-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: #E11D48; /* Rojo de alerta para el dolor */
-            opacity: 0.6;
-            transition: opacity 0.3s;
-        }
-
+        /* RESTO DE ESTILOS MANTENIDOS IGUAL PARA LA VELOCIDAD */
+        .problema { background-color: var(--background); }
+        .pain-card { background: var(--card); border: 1px solid rgba(255,255,255,0.05); padding: 40px 32px; border-radius: 16px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .pain-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #E11D48; opacity: 0.6; transition: opacity 0.3s; }
         .pain-card:hover::before { opacity: 1; }
         .pain-card:hover { transform: translateY(-5px); background: rgba(30, 41, 59, 0.6); }
+        .pain-icon { font-size: 2.5rem; margin-bottom: 20px; display: inline-block; }
+        .pain-card h3 { font-size: 1.25rem; margin-bottom: 16px; color: var(--foreground); font-weight: 700; }
+        .pain-card p { color: var(--muted-foreground); font-size: 0.95rem; line-height: 1.7; }
 
-        .pain-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
+        .productos { background-color: rgba(15, 23, 42, 0.4); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .prod-card { background: var(--card); border: 1px solid var(--border); padding: 40px 32px; border-radius: 16px; display: flex; flex-direction: column; transition: all 0.3s; }
+        .prod-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .prod-card.featured { background: linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%); border: 2px solid rgba(212, 175, 55, 0.4); transform: scale(1.05); position: relative; }
+        .featured-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gradient-gold); color: var(--accent-foreground); padding: 6px 20px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4); letter-spacing: 0.5px; text-transform: uppercase; }
+        .prod-icon { width: 56px; height: 56px; background: rgba(212, 175, 55, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .prod-card h3 { font-size: 1.6rem; margin-bottom: 8px; }
+        .prod-tag { color: var(--accent); font-size: 0.875rem; font-weight: 600; margin-bottom: 16px; }
+        .prod-desc { color: var(--muted-foreground); font-size: 0.95rem; margin-bottom: 32px; }
+        .feature-list { list-style: none; margin-bottom: 32px; flex-grow: 1; }
+        .feature-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 0.9rem; color: rgba(255,255,255,0.9); }
+        .feature-list svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
 
-        .pain-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 16px;
-            color: var(--foreground);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-        }
+        .testimonios { background-color: var(--background); }
+        .testimonio-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 20px; position: relative; backdrop-filter: blur(10px); }
+        .quote-icon { position: absolute; top: 30px; right: 30px; opacity: 0.1; color: var(--accent); }
+        .testimonio-card p.cita { font-size: 1.05rem; color: rgba(255,255,255,0.85); font-style: italic; margin-bottom: 30px; position: relative; z-index: 2; }
+        .cliente-info { display: flex; align-items: center; gap: 16px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .cliente-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--gradient-gold); display: flex; align-items: center; justify-content: center; color: var(--accent-foreground); font-weight: bold; font-size: 1.2rem; }
+        .cliente-detalles h4 { color: var(--foreground); font-size: 1rem; margin-bottom: 2px; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .cliente-detalles span { color: var(--accent); font-size: 0.8rem; font-weight: 600; }
 
-        .pain-card p {
-            color: var(--muted-foreground);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
+        .sobre-mi { background-color: rgba(15, 23, 42, 0.3); border-top: 1px solid rgba(255,255,255,0.05); }
+        .sobre-mi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+        .sobre-mi-img { width: 100%; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid var(--border); }
+        .asesora-texto p { color: var(--muted-foreground); margin-bottom: 20px; font-size: 1.1rem; }
 
-        /* 2. SOLUCIONES (PRODUCTOS) */
-        .productos {
-            background-color: rgba(15, 23, 42, 0.4); 
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .prod-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 40px 32px;
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s;
-        }
-
-        .prod-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .prod-card.featured {
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
-            border: 2px solid rgba(212, 175, 55, 0.4);
-            transform: scale(1.05);
-            position: relative;
-        }
-
-        .featured-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-gold);
-            color: var(--accent-foreground);
-            padding: 6px 20px;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .prod-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
-
-        .prod-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-        }
-
-        .prod-tag {
-            color: var(--accent);
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .prod-desc {
-            color: var(--muted-foreground);
-            font-size: 0.95rem;
-            margin-bottom: 32px;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-bottom: 32px;
-            flex-grow: 1;
-        }
-
-        .feature-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 16px;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .feature-list svg {
-            color: var(--accent);
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        /* 3. CASOS DE ÉXITO (TESTIMONIOS) */
-        .testimonios {
-            background-color: var(--background);
-        }
-
-        .testimonio-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 20px;
-            position: relative;
-            backdrop-filter: blur(10px);
-        }
-
-        .quote-icon {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            opacity: 0.1;
-            color: var(--accent);
-        }
-
-        .testimonio-card p.cita {
-            font-size: 1.05rem;
-            color: rgba(255,255,255,0.85);
-            font-style: italic;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .cliente-info {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-        }
-
-        .cliente-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--gradient-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-foreground);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .cliente-detalles h4 {
-            color: var(--foreground);
-            font-size: 1rem;
-            margin-bottom: 2px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        .cliente-detalles span {
-            color: var(--accent);
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* ASESORA */
-        .sobre-mi {
-            background-color: rgba(15, 23, 42, 0.3);
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .sobre-mi-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-        }
-
-        .sobre-mi-img {
-            width: 100%;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-            border: 1px solid var(--border);
-        }
-
-        .asesora-texto p {
-            color: var(--muted-foreground);
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        /* FOOTER */
-        footer {
-            padding: 60px 0 40px 0;
-            background: var(--background);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-            color: var(--muted-foreground);
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: var(--gradient-gold);
-            color: var(--accent-foreground);
-            transform: translateY(-3px);
-        }
+        footer { padding: 60px 0 40px 0; background: var(--background); border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .social-links { display: flex; justify-content: center; margin-bottom: 30px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: rgba(255,255,255,0.05); border-radius: 50%; color: var(--muted-foreground); transition: all 0.3s; }
+        .social-links a:hover { background: var(--gradient-gold); color: var(--accent-foreground); transform: translateY(-3px); }
 
         @media (max-width: 992px) {
             .hero-content, .sobre-mi-grid { grid-template-columns: 1fr; }
@@ -577,10 +182,80 @@
             .badge { justify-content: center; width: 100%; }
             .form-wrapper { margin: 40px auto 0 auto; }
             .prod-card.featured { transform: scale(1); }
+            .calendario-iframe { min-height: 800px; } /* Más altura en móviles para el calendario GHL */
         }
     </style>
 </head>
 <body>
+
+    <div id="urgency-modal" class="modal-overlay">
+        <div class="modal-content" id="modal-box">
+            <button class="modal-close" onclick="cerrarModal()">×</button>
+            
+            <div id="modal-form-content">
+                <h2 class="font-display" style="color: white; font-size: 1.8rem; margin-bottom: 10px;">¡No te vayas sin tu diagnóstico! 🛑</h2>
+                <p style="color: var(--muted-foreground); margin-bottom: 25px; font-size: 0.95rem;">Responde estas preguntas rápidas para acceder al calendario de Viviana.</p>
+                
+                <form id="modal-form" action="https://formspree.io/f/maqddrve" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div id="m-paso-1" class="form-step active">
+                        <div class="form-group">
+                            <label>Rango de Edad</label>
+                            <select name="edad" class="form-control" required id="m_edad">
+                                <option value="" disabled selected>Selecciona tu edad...</option>
+                                <option value="30 a 40 años">30 a 40 años</option>
+                                <option value="40 a 50 años">40 a 50 años</option>
+                                <option value="Más de 50 años">Más de 50 años</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ingreso a Proteger</label>
+                            <select name="ingreso" class="form-control" required id="m_ingreso">
+                                <option value="" disabled selected>Selecciona un rango...</option>
+                                <option value="40k a 60k">$40,000 a $60,000 USD</option>
+                                <option value="60k a 100k">$60,000 a $100,000 USD</option>
+                                <option value="Más de 100k">Más de $100,000 USD</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Capacidad de Ahorro</label>
+                            <select name="ahorro" class="form-control" required id="m_ahorro">
+                                <option value="" disabled selected>Selecciona una meta...</option>
+                                <option value="30k a 50k">$30,000 a $50,000</option>
+                                <option value="50k a 100k">$50,000 a $100,000</option>
+                                <option value="Más de 100k">Más de $100,000</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn-gold" onclick="validarModalPaso1()">Continuar →</button>
+                    </div>
+
+                    <div id="m-paso-2" class="form-step">
+                        <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" name="nombre" class="form-control" required placeholder="Ej. Roberto Sánchez">
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp Personal</label>
+                            <input type="tel" name="telefono" class="form-control" required placeholder="A 10 dígitos">
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico</label>
+                            <input type="email" name="correo" class="form-control" required placeholder="tu@correo.com">
+                        </div>
+                        <button type="submit" id="modal-submit-btn" class="btn-gold">Generar Diagnóstico y Ver Agenda</button>
+                        <button type="button" class="btn-back" onclick="regresarModalPaso1()">← Modificar datos</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="modal-calendar-container" style="display: none;">
+                <h2 class="font-display" style="text-align: center; font-size: 1.6rem; color: var(--accent); margin-bottom: 20px;">¡Excelente! Último Paso.</h2>
+                <p style="text-align: center; color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 20px;">Selecciona el día y la hora para tu Auditoría Privada por Zoom.</p>
+                <iframe src="https://api.leadconnectorhq.com/widget/booking/usc3LKEVKKwoIEsbwfYe" class="calendario-iframe" scrolling="yes" id="usc3LKEVKKwoIEsbwfYe_2"></iframe>
+            </div>
+        </div>
+    </div>
 
     <nav>
         <div class="container nav-content">
@@ -603,18 +278,19 @@
                 <p>Tu éxito actual no garantiza el futuro. Un imprevisto médico o una ausencia prematura puede borrar años de esfuerzo. Blinda hoy el estilo de vida de los que amas y multiplica tu patrimonio con certeza absoluta.</p>
             </div>
 
-            <div class="form-wrapper" id="formulario">
-                <div class="form-header">
-                    <h2 id="form-title">Evaluación de Riesgo Patrimonial</h2>
-                    <p id="form-subtitle" style="color: #FDE047;">Paso 1: Descubre tu nivel de vulnerabilidad hoy.</p>
+            <div class="form-wrapper" id="formulario-contenedor">
+                
+                <div id="form-header-content">
+                    <div class="form-header">
+                        <h2 id="form-title">Evaluación de Riesgo Patrimonial</h2>
+                        <p id="form-subtitle" style="color: #FDE047;">Paso 1: Descubre tu nivel de vulnerabilidad hoy.</p>
+                    </div>
+                    <div class="progress-container" id="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
                 </div>
 
-                <div class="progress-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-
-                <form id="qualifier-form" action="https://formspree.io/f/TU_ID_AQUI" method="POST">
-                    <input type="hidden" name="_next" value="https://calendly.com/vivianamondragonn/asesoria-gnp">
+                <form id="qualifier-form" action="https://formspree.io/f/maqddrve" method="POST">
                     <input type="hidden" name="_captcha" value="false">
 
                     <div id="paso-1" class="form-step active">
@@ -627,7 +303,6 @@
                                 <option value="Más de 50 años">Más de 50 años</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label>Nivel de Ingreso que deseas proteger</label>
                             <select id="ingreso" name="ingreso" class="form-control" required>
@@ -637,7 +312,6 @@
                                 <option value="Más de 100k">Más de $100,000 USD</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label>Capacidad para estructurar tu capital (Anual)</label>
                             <select id="ahorro" name="ahorro" class="form-control" required>
@@ -647,30 +321,33 @@
                                 <option value="Más de 100k">Más de $100,000</option>
                             </select>
                         </div>
-
                         <button type="button" class="btn-gold" onclick="validarPaso1()">Avanzar al Paso Final →</button>
                     </div>
 
                     <div id="paso-2" class="form-step">
                         <div class="form-group">
                             <label>Nombre Completo</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Roberto Sánchez">
+                            <input type="text" name="nombre" class="form-control" required placeholder="Ej. Roberto Sánchez">
                         </div>
-
                         <div class="form-group">
-                            <label>WhatsApp Personal (Para enviar tu diagnóstico)</label>
-                            <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="A 10 dígitos">
+                            <label>WhatsApp Personal</label>
+                            <input type="tel" name="telefono" class="form-control" required placeholder="A 10 dígitos">
                         </div>
-
                         <div class="form-group">
                             <label>Correo Electrónico Privado</label>
-                            <input type="email" id="correo" name="correo" class="form-control" required placeholder="tu@correo.com">
+                            <input type="email" name="correo" class="form-control" required placeholder="tu@correo.com">
                         </div>
-
-                        <button type="submit" class="btn-gold">Agendar Sesión y Ver Diagnóstico</button>
+                        <button type="submit" id="submit-btn" class="btn-gold">Generar Diagnóstico y Ver Agenda</button>
                         <button type="button" class="btn-back" onclick="regresarPaso1()">← Modificar datos de perfil</button>
                     </div>
                 </form>
+
+                <div id="calendar-container">
+                    <h2 class="font-display" style="text-align: center; font-size: 1.6rem; color: var(--accent); margin-bottom: 20px;">¡Excelente! Último Paso.</h2>
+                    <p style="text-align: center; color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 20px;">Selecciona el día y la hora para tu Auditoría Privada por Zoom.</p>
+                    
+                    <iframe src="https://api.leadconnectorhq.com/widget/booking/usc3LKEVKKwoIEsbwfYe" class="calendario-iframe" scrolling="yes" id="usc3LKEVKKwoIEsbwfYe_1"></iframe>
+                </div>
             </div>
         </div>
     </section>
@@ -761,41 +438,29 @@
                 <span class="section-tag">Resultados Reales</span>
                 <h2 class="font-display">Ellos decidieron no dejar el <span class="text-gradient-gold">futuro a la suerte</span></h2>
             </div>
-
             <div class="grid-3">
                 <div class="testimonio-card">
                     <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3z"></path></svg>
-                    <p class="cita">"Mi peor pesadilla era fallecer y que mi esposa tuviera que vender nuestra casa para pagar las deudas del negocio. Con Vida Trasciende, con solo una firma, le garantizamos varios millones de pesos libres de impuestos. Ya duermo tranquilo."</p>
+                    <p class="cita">"Mi peor pesadilla era fallecer y que mi esposa tuviera que vender nuestra casa para pagar las deudas del negocio. Con Vida Trasciende, le garantizamos varios millones libres de impuestos. Ya duermo tranquilo."</p>
                     <div class="cliente-info">
                         <div class="cliente-avatar">R</div>
-                        <div class="cliente-detalles">
-                            <h4>Roberto M. (45 años)</h4>
-                            <span>Socio Fundador · Vida Trasciende</span>
-                        </div>
+                        <div class="cliente-detalles"><h4>Roberto M. (45 años)</h4><span>Socio Fundador</span></div>
                     </div>
                 </div>
-
                 <div class="testimonio-card">
                     <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3z"></path></svg>
-                    <p class="cita">"Dejaba todo mi dinero en el banco porque 'me daba miedo invertir'. Viviana me mostró cuánto perdía al año por la inflación. Moví una parte a Consolida y ahora mi dinero crece garantizado, y si me pasa algo, mis hijas están cubiertas."</p>
+                    <p class="cita">"Dejaba mi dinero en el banco por 'miedo a invertir'. Viviana me mostró cuánto perdía por inflación. Moví una parte a Consolida y ahora mi dinero crece garantizado, y mis hijas están cubiertas."</p>
                     <div class="cliente-info">
                         <div class="cliente-avatar">A</div>
-                        <div class="cliente-detalles">
-                            <h4>Ana Laura S. (38 años)</h4>
-                            <span>Directora Comercial · Consolida</span>
-                        </div>
+                        <div class="cliente-detalles"><h4>Ana Laura S. (38 años)</h4><span>Directora Comercial</span></div>
                     </div>
                 </div>
-
                 <div class="testimonio-card">
                     <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3z"></path></svg>
-                    <p class="cita">"Me aterraba pensar en pagar universidades caras en 10 años. Gracias al plan Proyecta, automatizamos el ahorro. Si sigo vivo, tengo el dinero para sus carreras; si falto, la póliza les paga los estudios íntegros. No hay pérdida."</p>
+                    <p class="cita">"Me aterraba pensar en pagar universidades caras. Gracias al plan Proyecta, automatizamos el ahorro. Si sigo vivo, tengo el dinero; si falto, la póliza paga sus estudios íntegros."</p>
                     <div class="cliente-info">
                         <div class="cliente-avatar">D</div>
-                        <div class="cliente-detalles">
-                            <h4>David T. (34 años)</h4>
-                            <span>Arquitecto · Plan Proyecta</span>
-                        </div>
+                        <div class="cliente-detalles"><h4>David T. (34 años)</h4><span>Arquitecto</span></div>
                     </div>
                 </div>
             </div>
@@ -806,17 +471,14 @@
         <div class="container">
             <div class="sobre-mi-grid">
                 <div>
-                    <span class="section-tag">Senior Wealth Advisor GNP</span>
+                    <span class="section-tag">Senior Wealth Advisor</span>
                     <h2 class="font-display" style="font-size: 3rem; margin-bottom: 24px;">Hola, soy <br><span class="text-gradient-gold">Viviana Mondragón</span></h2>
-                    
                     <div class="asesora-texto">
                         <p>En el nivel patrimonial en el que te encuentras, las pólizas genéricas son un riesgo inaceptable. Mi enfoque trasciende la venta tradicional; ofrezco un servicio de <strong>estructuración financiera exclusivo y confidencial.</strong></p>
-                        <p>A través de un diagnóstico minucioso, diseño instrumentos de certidumbre que garantizan que tu estilo de vida y el de tu familia permanezcan inquebrantables. Tú dedícate a disfrutar tu éxito, nosotros blindamos tu legado.</p>
+                        <p>Diseño instrumentos de certidumbre que garantizan que el estilo de vida de tu familia permanezca inquebrantable. Tú dedícate a disfrutar tu éxito, nosotros blindamos tu legado.</p>
                     </div>
-                    
-                    <button class="btn-gold" style="max-width: 300px; margin-top: 30px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">INICIAR MI COTIZACIÓN</button>
+                    <button class="btn-gold" style="max-width: 300px; margin-top: 30px;" onclick="document.getElementById('formulario-contenedor').scrollIntoView({behavior: 'smooth'})">INICIAR MI COTIZACIÓN</button>
                 </div>
-                
                 <div>
                     <img src="WhatsApp Image 2026-02-17 at 9.39.04 PM.jpeg" alt="Viviana Mondragón" class="sobre-mi-img">
                 </div>
@@ -832,38 +494,97 @@
                 </a>
             </div>
             <p style="color: rgba(255,255,255,0.4); font-size: 0.875rem;">© 2026 Viviana Mondragón · Asesoría Patrimonial GNP · Todos los derechos reservados</p>
-            <p style="color: rgba(255,255,255,0.2); font-size: 0.75rem; margin-top: 10px;">La información proporcionada es confidencial y procesada de forma segura bajo los lineamientos de privacidad bancaria.</p>
         </div>
     </footer>
 
+    <script src="https://api.leadconnectorhq.com/js/form_embed.js" type="text/javascript"></script>
+
     <script>
+        let formCompletado = false;
+
+        // Lógica FORMULARIO PRINCIPAL
         function validarPaso1() {
             const edad = document.getElementById('edad');
             const ingreso = document.getElementById('ingreso');
             const ahorro = document.getElementById('ahorro');
-            
             if (edad.checkValidity() && ingreso.checkValidity() && ahorro.checkValidity()) {
                 document.getElementById('paso-1').classList.remove('active');
                 document.getElementById('paso-2').classList.add('active');
-                
                 document.getElementById('form-title').innerText = "Contacto de Seguridad";
-                document.getElementById('form-subtitle').innerText = "Paso 2: ¿A dónde enviamos los detalles de tu cotización?";
+                document.getElementById('form-subtitle').innerText = "Paso 2: ¿A dónde enviamos tu diagnóstico?";
                 document.getElementById('progress-bar').style.width = "100%";
-            } else {
-                edad.reportValidity();
-                ingreso.reportValidity();
-                ahorro.reportValidity();
-            }
+            } else { edad.reportValidity(); ingreso.reportValidity(); ahorro.reportValidity(); }
         }
-
         function regresarPaso1() {
             document.getElementById('paso-2').classList.remove('active');
             document.getElementById('paso-1').classList.add('active');
-            
             document.getElementById('form-title').innerText = "Evaluación de Riesgo Patrimonial";
             document.getElementById('form-subtitle').innerText = "Paso 1: Descubre tu nivel de vulnerabilidad hoy.";
             document.getElementById('progress-bar').style.width = "50%";
         }
+
+        // Lógica FORMULARIO DEL MODAL
+        function validarModalPaso1() {
+            const m_edad = document.getElementById('m_edad');
+            const m_ingreso = document.getElementById('m_ingreso');
+            const m_ahorro = document.getElementById('m_ahorro');
+            if (m_edad.checkValidity() && m_ingreso.checkValidity() && m_ahorro.checkValidity()) {
+                document.getElementById('m-paso-1').classList.remove('active');
+                document.getElementById('m-paso-2').classList.add('active');
+            } else { m_edad.reportValidity(); m_ingreso.reportValidity(); m_ahorro.reportValidity(); }
+        }
+        function regresarModalPaso1() {
+            document.getElementById('m-paso-2').classList.remove('active');
+            document.getElementById('m-paso-1').classList.add('active');
+        }
+
+        // FUNCIÓN AJAX PARA FORMULARIO PRINCIPAL
+        document.getElementById('qualifier-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = "Procesando..."; btn.disabled = true;
+
+            fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    formCompletado = true; 
+                    document.getElementById('form-header-content').style.display = 'none';
+                    document.getElementById('qualifier-form').style.display = 'none';
+                    
+                    // Mostramos el calendario y expandimos el contenedor para que no se vea "largo"
+                    const container = document.getElementById('formulario-contenedor');
+                    container.classList.add('calendar-mode');
+                    document.getElementById('calendar-container').style.display = 'block';
+                } else { alert("Error. Intenta nuevamente."); btn.innerText = "Generar Diagnóstico"; btn.disabled = false; }
+            }).catch(error => { alert("Problema de conexión."); btn.innerText = "Generar Diagnóstico"; btn.disabled = false; });
+        });
+
+        // FUNCIÓN AJAX PARA FORMULARIO DEL MODAL
+        document.getElementById('modal-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const btn = document.getElementById('modal-submit-btn');
+            btn.innerText = "Procesando..."; btn.disabled = true;
+
+            fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    formCompletado = true; 
+                    document.getElementById('modal-form-content').style.display = 'none';
+                    
+                    // Mostramos el calendario en el modal y lo ensanchamos
+                    const modalBox = document.getElementById('modal-box');
+                    modalBox.classList.add('calendar-mode');
+                    document.getElementById('modal-calendar-container').style.display = 'block';
+                } else { alert("Error. Intenta nuevamente."); btn.innerText = "Generar Diagnóstico"; btn.disabled = false; }
+            }).catch(error => { alert("Problema de conexión."); btn.innerText = "Generar Diagnóstico"; btn.disabled = false; });
+        });
+
+        // POPUP AL MINUTO (Solo si no han llenado el form)
+        setTimeout(function() {
+            if(!formCompletado) { document.getElementById('urgency-modal').classList.add('show'); }
+        }, 60000); 
+
+        function cerrarModal() { document.getElementById('urgency-modal').classList.remove('show'); }
     </script>
 </body>
 </html>
