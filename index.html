@@ -73,8 +73,9 @@
             align-items: center;
         }
 
+        /* TAMAÑO DEL LOGO AJUSTADO */
         .logo {
-            height: 120px;
+            height: 100px; 
             filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
         }
 
@@ -126,7 +127,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-size: clamp(2.8rem, 5vw, 4rem);
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 24px;
@@ -168,7 +169,8 @@
 
         .form-header p {
             font-size: 0.875rem;
-            color: var(--muted-foreground);
+            color: var(--accent);
+            font-weight: 600;
         }
 
         .progress-container {
@@ -270,7 +272,7 @@
         
         .section-header {
             text-align: center;
-            max-width: 768px;
+            max-width: 800px;
             margin: 0 auto 64px auto;
         }
 
@@ -302,7 +304,7 @@
             align-items: stretch;
         }
 
-        /* 1. AGITACIÓN DEL DOLOR */
+        /* 1. AGITACIÓN DEL DOLOR (PSICOLOGÍA) */
         .problema {
             background-color: var(--background);
         }
@@ -321,8 +323,8 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--gradient-gold);
-            opacity: 0.5;
+            background: #E11D48; /* Rojo de alerta para el dolor */
+            opacity: 0.6;
             transition: opacity 0.3s;
         }
 
@@ -594,17 +596,17 @@
             <div>
                 <div class="badge">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
-                    Estrategia Financiera VIP
+                    Estrategia de Blindaje GNP
                 </div>
                 
-                <h1 class="font-display">Tu patrimonio tardó años en construirse. <br><span class="text-gradient-gold">No dejes que un imprevisto lo destruya.</span></h1>
-                <p>Las familias financieramente más sólidas de México no improvisan. Garantiza el nivel de vida de los que amas, blinda tu retiro y multiplica tu legado con el respaldo absoluto de GNP.</p>
+                <h1 class="font-display">Si hoy dejaras de generar ingresos, <br><span class="text-gradient-gold">¿cuántos meses sobreviviría tu familia?</span></h1>
+                <p>Tu éxito actual no garantiza el futuro. Un imprevisto médico o una ausencia prematura puede borrar años de esfuerzo. Blinda hoy el estilo de vida de los que amas y multiplica tu patrimonio con certeza absoluta.</p>
             </div>
 
             <div class="form-wrapper" id="formulario">
                 <div class="form-header">
-                    <h2 id="form-title">Auditoría Patrimonial</h2>
-                    <p id="form-subtitle">Paso 1: Ayúdanos a perfilar tu estrategia.</p>
+                    <h2 id="form-title">Evaluación de Riesgo Patrimonial</h2>
+                    <p id="form-subtitle" style="color: #FDE047;">Paso 1: Descubre tu nivel de vulnerabilidad hoy.</p>
                 </div>
 
                 <div class="progress-container">
@@ -617,7 +619,7 @@
 
                     <div id="paso-1" class="form-step active">
                         <div class="form-group">
-                            <label>Rango de Edad</label>
+                            <label>Tu Rango de Edad Actual</label>
                             <select id="edad" name="edad" class="form-control" required>
                                 <option value="" disabled selected>Selecciona tu edad...</option>
                                 <option value="30 a 40 años">30 a 40 años</option>
@@ -627,17 +629,17 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Ingreso Anual Estimado</label>
+                            <label>Nivel de Ingreso que deseas proteger</label>
                             <select id="ingreso" name="ingreso" class="form-control" required>
-                                <option value="" disabled selected>Selecciona un rango...</option>
-                                <option value="40k a 60k">$40,000 a $60,000</option>
-                                <option value="60k a 100k">$60,000 a $100,000</option>
-                                <option value="Más de 100k">Más de $100,000</option>
+                                <option value="" disabled selected>Selecciona un rango anual...</option>
+                                <option value="40k a 60k">$40,000 a $60,000 USD</option>
+                                <option value="60k a 100k">$60,000 a $100,000 USD</option>
+                                <option value="Más de 100k">Más de $100,000 USD</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label>Capacidad de Ahorro Anual</label>
+                            <label>Capacidad para estructurar tu capital (Anual)</label>
                             <select id="ahorro" name="ahorro" class="form-control" required>
                                 <option value="" disabled selected>Selecciona una meta...</option>
                                 <option value="30k a 50k">$30,000 a $50,000</option>
@@ -646,7 +648,7 @@
                             </select>
                         </div>
 
-                        <button type="button" class="btn-gold" onclick="validarPaso1()">Descubrir mi plan ideal →</button>
+                        <button type="button" class="btn-gold" onclick="validarPaso1()">Avanzar al Paso Final →</button>
                     </div>
 
                     <div id="paso-2" class="form-step">
@@ -656,16 +658,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label>WhatsApp Personal</label>
+                            <label>WhatsApp Personal (Para enviar tu diagnóstico)</label>
                             <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="A 10 dígitos">
                         </div>
 
                         <div class="form-group">
-                            <label>Correo Electrónico</label>
+                            <label>Correo Electrónico Privado</label>
                             <input type="email" id="correo" name="correo" class="form-control" required placeholder="tu@correo.com">
                         </div>
 
-                        <button type="submit" class="btn-gold">Ver Agenda y Confirmar Sesión</button>
+                        <button type="submit" class="btn-gold">Agendar Sesión y Ver Diagnóstico</button>
                         <button type="button" class="btn-back" onclick="regresarPaso1()">← Modificar datos de perfil</button>
                     </div>
                 </form>
@@ -676,26 +678,26 @@
     <section class="section-padding problema">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Análisis de Riesgo</span>
-                <h2 class="font-display">La realidad que nadie te cuenta sobre tu <span class="text-gradient-gold">futuro financiero</span></h2>
-                <p>El 80% de las familias de altos ingresos pierden su nivel de vida tras una eventualidad mayor. Estos son los errores fatales que debes evitar hoy.</p>
+                <span class="section-tag" style="color: #E11D48;">Cruda Realidad Financiera</span>
+                <h2 class="font-display">Los 3 errores que están <span class="text-gradient-gold">destruyendo tu riqueza hoy</span></h2>
+                <p>Las finanzas tradicionales están diseñadas para que el banco gane, no tú. Estos son los riesgos invisibles que amenazan a tu familia en este mismo momento.</p>
             </div>
 
             <div class="grid-3">
                 <div class="pain-card">
                     <div class="pain-icon">📉</div>
-                    <h3>Liquidez sin rendimiento</h3>
-                    <p>Tener tu dinero "seguro" en el banco es una ilusión. La inflación silenciosa devora tu poder adquisitivo cada año. Si tu capital no crece, te estás empobreciendo.</p>
+                    <h3>El riesgo de no hacer nada</h3>
+                    <p>Dejar tu dinero estancado en el banco no es seguridad, es pérdida garantizada. La inflación devora silenciosamente tu poder adquisitivo cada año. Estás trabajando duro hoy, para ser más pobre mañana.</p>
                 </div>
                 <div class="pain-card">
-                    <div class="pain-icon">⚠️</div>
-                    <h3>Falsa sensación de seguridad</h3>
-                    <p>Creer que "nunca te pasará nada". Una enfermedad grave o una ausencia prematura no solo es un golpe emocional, sino que puede liquidar los ahorros de toda tu vida en meses.</p>
+                    <div class="pain-icon">🏥</div>
+                    <h3>La ruina por enfermedad</h3>
+                    <p>Una emergencia médica seria puede costar millones de pesos de la noche a la mañana. Sin el blindaje correcto, terminarás rematando tus propiedades y destruyendo la herencia de tus hijos para pagar facturas del hospital.</p>
                 </div>
                 <div class="pain-card">
-                    <div class="pain-icon">⏳</div>
-                    <h3>Depender de sistemas caducos</h3>
-                    <p>Esperar que tu Afore o el sistema tradicional mantenga tu estilo de vida en la jubilación es matemáticamente imposible. Tu retiro digno depende única y exclusivamente de lo que estructures hoy.</p>
+                    <div class="pain-icon">👴</div>
+                    <h3>Ser una carga para tus hijos</h3>
+                    <p>Creer que tu negocio o la Afore te mantendrán en la vejez es el error número uno. Si no estructuras un retiro con rendimientos garantizados hoy, el precio financiero lo pagarán tus hijos el día de mañana.</p>
                 </div>
             </div>
         </div>
@@ -704,8 +706,8 @@
     <section class="section-padding productos">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Portafolio GNP</span>
-                <h2 class="font-display">El antídoto: Planes diseñados para <span class="text-gradient-gold">garantizar tu tranquilidad</span></h2>
+                <span class="section-tag">El Antídoto</span>
+                <h2 class="font-display">La arquitectura financiera que te <span class="text-gradient-gold">devuelve el control</span></h2>
             </div>
 
             <div class="grid-3">
@@ -713,27 +715,27 @@
                     <div class="prod-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
                     </div>
-                    <h3 class="font-display">Proyecta</h3>
-                    <div class="prod-tag">Materializa tus metas</div>
-                    <p class="prod-desc">El vehículo perfecto para fondear proyectos a mediano plazo (como la universidad en el extranjero de tus hijos), garantizando que el dinero estará ahí aunque tú llegues a faltar.</p>
+                    <h3 class="font-display">Vida Proyecta</h3>
+                    <div class="prod-tag">Fondea tus sueños sin endeudarte</div>
+                    <p class="prod-desc">Diseñado para proyectos innegociables. Garantiza que el dinero para la universidad de tus hijos o el enganche de tu próxima propiedad estará ahí, incluso si tú llegas a faltar antes de tiempo.</p>
                     <ul class="feature-list">
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Ahorro inteligente protegido</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Flexibilidad en aportaciones</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Oblígate a ahorrar con propósito</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Crecimiento de capital asegurado</li>
                     </ul>
                 </div>
 
                 <div class="prod-card featured">
-                    <div class="featured-badge">Más Elegido</div>
+                    <div class="featured-badge">El Más Completo</div>
                     <div class="prod-icon" style="background: rgba(212, 175, 55, 0.2);">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"></line><line x1="6" x2="6" y1="18" y2="11"></line><line x1="10" x2="10" y1="18" y2="11"></line><line x1="14" x2="14" y1="18" y2="11"></line><line x1="18" x2="18" y1="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon></svg>
                     </div>
                     <h3 class="font-display">Consolida</h3>
-                    <div class="prod-tag">Asegura tu capital y tu retiro</div>
-                    <p class="prod-desc">Ingeniería financiera pura. Oblígate a capitalizar tu esfuerzo mediante un instrumento de ahorro con rendimientos certeros, manteniendo tu protección desde el primer segundo.</p>
+                    <div class="prod-tag">Retiro digno, donde tú pones las reglas</div>
+                    <p class="prod-desc">Crea un fondo intocable con rendimientos superiores. Oblígate a capitalizar tu esfuerzo en una edad productiva, para que en tu retiro no dependas de nada ni de nadie.</p>
                     <ul class="feature-list">
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Rendimientos garantizados</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Suma asegurada personalizable</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Excelente instrumento de jubilación</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Rendimientos garantizados por contrato</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Protección por invalidez total</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Opciones de deducibilidad fiscal</li>
                     </ul>
                 </div>
 
@@ -741,12 +743,12 @@
                     <div class="prod-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
                     </div>
-                    <h3 class="font-display">Trasciende</h3>
-                    <div class="prod-tag">Tu legado intacto</div>
-                    <p class="prod-desc">La herramienta definitiva para la transferencia de riqueza. Garantiza la estabilidad económica de tus seres queridos de forma vitalicia sin comprometer tu liquidez actual.</p>
+                    <h3 class="font-display">Vida Trasciende</h3>
+                    <div class="prod-tag">Tu familia es primero. Y para siempre.</div>
+                    <p class="prod-desc">Asegura hoy que tu familia no pierda su casa, su estilo de vida ni su estatus si tú llegas a faltar. Una inyección de capital vitalicia, libre de impuestos y de embargos.</p>
                     <ul class="feature-list">
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Protección de por vida</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Herencia garantizada (libre de impuestos)</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Blindaje patrimonial de por vida</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg> Transmisión de herencia impecable</li>
                     </ul>
                 </div>
             </div>
@@ -756,43 +758,43 @@
     <section class="section-padding testimonios">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Casos de Éxito</span>
-                <h2 class="font-display">Historias de familias que ya <span class="text-gradient-gold">tomaron acción</span></h2>
+                <span class="section-tag">Resultados Reales</span>
+                <h2 class="font-display">Ellos decidieron no dejar el <span class="text-gradient-gold">futuro a la suerte</span></h2>
             </div>
 
             <div class="grid-3">
                 <div class="testimonio-card">
                     <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3z"></path></svg>
-                    <p class="cita">"Mi mayor miedo era no estar aquí para pagar la carrera de medicina de mi hija. Con el plan Proyecta, no solo me obligué a invertir inteligentemente, sino que tengo la paz mental de que su educación ya está 100% blindada."</p>
+                    <p class="cita">"Mi peor pesadilla era fallecer y que mi esposa tuviera que vender nuestra casa para pagar las deudas del negocio. Con Vida Trasciende, con solo una firma, le garantizamos varios millones de pesos libres de impuestos. Ya duermo tranquilo."</p>
                     <div class="cliente-info">
                         <div class="cliente-avatar">R</div>
                         <div class="cliente-detalles">
-                            <h4>Roberto M. (42 años)</h4>
-                            <span>Empresario · Plan Proyecta</span>
+                            <h4>Roberto M. (45 años)</h4>
+                            <span>Socio Fundador · Vida Trasciende</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="testimonio-card">
                     <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3z"></path></svg>
-                    <p class="cita">"Como proveedores de la casa, mi esposo y yo no podíamos dormir pensando qué pasaría con nuestros hijos pequeños si uno faltaba. Vida Trasciende nos quitó un peso enorme de encima protegiendo todo nuestro patrimonio."</p>
+                    <p class="cita">"Dejaba todo mi dinero en el banco porque 'me daba miedo invertir'. Viviana me mostró cuánto perdía al año por la inflación. Moví una parte a Consolida y ahora mi dinero crece garantizado, y si me pasa algo, mis hijas están cubiertas."</p>
                     <div class="cliente-info">
-                        <div class="cliente-avatar">G</div>
+                        <div class="cliente-avatar">A</div>
                         <div class="cliente-detalles">
-                            <h4>Familia Garza S. (38 años)</h4>
-                            <span>Profesionistas · Vida Trasciende</span>
+                            <h4>Ana Laura S. (38 años)</h4>
+                            <span>Directora Comercial · Consolida</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="testimonio-card">
                     <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14 17h3l2-4V7h-6v6h3M6 17h3l2-4V7H5v6h3z"></path></svg>
-                    <p class="cita">"Quería iniciar mi fondo de retiro, pero los bancos tradicionales me daban tasas de risa. La auditoría de Viviana me llevó al plan Consolida. Hoy mi dinero crece por encima de la inflación y tengo un seguro activo. Una maravilla."</p>
+                    <p class="cita">"Me aterraba pensar en pagar universidades caras en 10 años. Gracias al plan Proyecta, automatizamos el ahorro. Si sigo vivo, tengo el dinero para sus carreras; si falto, la póliza les paga los estudios íntegros. No hay pérdida."</p>
                     <div class="cliente-info">
-                        <div class="cliente-avatar">E</div>
+                        <div class="cliente-avatar">D</div>
                         <div class="cliente-detalles">
-                            <h4>Elena T. (35 años)</h4>
-                            <span>Socia Directora · Consolida</span>
+                            <h4>David T. (34 años)</h4>
+                            <span>Arquitecto · Plan Proyecta</span>
                         </div>
                     </div>
                 </div>
@@ -804,7 +806,7 @@
         <div class="container">
             <div class="sobre-mi-grid">
                 <div>
-                    <span class="section-tag">Senior Wealth Advisor</span>
+                    <span class="section-tag">Senior Wealth Advisor GNP</span>
                     <h2 class="font-display" style="font-size: 3rem; margin-bottom: 24px;">Hola, soy <br><span class="text-gradient-gold">Viviana Mondragón</span></h2>
                     
                     <div class="asesora-texto">
@@ -812,7 +814,7 @@
                         <p>A través de un diagnóstico minucioso, diseño instrumentos de certidumbre que garantizan que tu estilo de vida y el de tu familia permanezcan inquebrantables. Tú dedícate a disfrutar tu éxito, nosotros blindamos tu legado.</p>
                     </div>
                     
-                    <button class="btn-gold" style="max-width: 250px; margin-top: 30px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">INICIAR MI COTIZACIÓN</button>
+                    <button class="btn-gold" style="max-width: 300px; margin-top: 30px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">INICIAR MI COTIZACIÓN</button>
                 </div>
                 
                 <div>
@@ -830,7 +832,7 @@
                 </a>
             </div>
             <p style="color: rgba(255,255,255,0.4); font-size: 0.875rem;">© 2026 Viviana Mondragón · Asesoría Patrimonial GNP · Todos los derechos reservados</p>
-            <p style="color: rgba(255,255,255,0.2); font-size: 0.75rem; margin-top: 10px;">La información proporcionada es confidencial y procesada de forma segura.</p>
+            <p style="color: rgba(255,255,255,0.2); font-size: 0.75rem; margin-top: 10px;">La información proporcionada es confidencial y procesada de forma segura bajo los lineamientos de privacidad bancaria.</p>
         </div>
     </footer>
 
@@ -844,8 +846,8 @@
                 document.getElementById('paso-1').classList.remove('active');
                 document.getElementById('paso-2').classList.add('active');
                 
-                document.getElementById('form-title').innerText = "Contacto Confidencial";
-                document.getElementById('form-subtitle').innerText = "Paso 2: ¿A dónde enviamos el acceso a tu agenda?";
+                document.getElementById('form-title').innerText = "Contacto de Seguridad";
+                document.getElementById('form-subtitle').innerText = "Paso 2: ¿A dónde enviamos los detalles de tu cotización?";
                 document.getElementById('progress-bar').style.width = "100%";
             } else {
                 edad.reportValidity();
@@ -858,8 +860,8 @@
             document.getElementById('paso-2').classList.remove('active');
             document.getElementById('paso-1').classList.add('active');
             
-            document.getElementById('form-title').innerText = "Auditoría Patrimonial";
-            document.getElementById('form-subtitle').innerText = "Paso 1: Ayúdanos a perfilar tu estrategia.";
+            document.getElementById('form-title').innerText = "Evaluación de Riesgo Patrimonial";
+            document.getElementById('form-subtitle').innerText = "Paso 1: Descubre tu nivel de vulnerabilidad hoy.";
             document.getElementById('progress-bar').style.width = "50%";
         }
     </script>
